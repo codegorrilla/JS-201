@@ -1,0 +1,14 @@
+.box{
+    --length: 50px;
+    width: var(--length);
+    height: var(--length);
+    display: block;
+    background-color: #000;
+    position: relative;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
