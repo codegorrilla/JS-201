@@ -49,27 +49,89 @@ const myCalculation = (num1, num2, myCallback)=>{
 // );
 
 
+// const myDisplayer = (some)=>{
+//     document.getElementById('demo').innerHTML = some;
+// }
+
+// let myPromise = new Promise(function(myResolve, myReject){
+//     let x = 0;
+//     //some code (try to change x to 5)
+
+//     if(x == 0){
+//         myResolve('ok');
+//     }else{
+//         myReject('Error');
+//     }
+// });
+
+// myPromise.then(
+//     function(value){myDisplayer(value);},
+//     function(error){myDisplayer(error);}
+// );
+
+//another example
+// const loveFunction = (msg)=>{
+//     document.getElementById('demo').innerHTML = msg;
+// }
+
+// setTimeout(loveFunction('I love you!!!'), 3000);
+
+//the same example using promise
+// let myPromise = new Promise(function(myResolve, myReject){
+//     setTimeout(()=>{
+//         myResolve('I love you!!!');
+//     }, 3000)
+// });
+
+// myPromise.then(
+//     function(value){
+//         document.getElementById('demo').innerHTML = value;
+//     }
+// )
+
+//another example
 const myDisplayer = (some)=>{
     document.getElementById('demo').innerHTML = some;
 }
 
-let myPromise = new Promise(function(myResolve, myReject){
-    let x = 0;
-    //some code (try to change x to 5)
+// function getFile(myCallback){
+//     let req = new XMLHttpRequest();
 
-    if(x == 0){
-        myResolve('ok');
-    }else{
-        myReject('Error');
+//     req.open('GET', 'some.txt');
+//     req.onload = ()=>{
+//         if(req.status == 200){
+//             myCallback(req.responseText);
+//         }else{
+//             myCallback("Error: " + req.status);
+//         }
+//     }
+
+//     req.send();
+// }
+
+//getFile(myDisplayer);
+
+
+//same example with Promise
+let myPromise = new Promise(function(myResolve, myReject){
+    let req = new XMLHttpRequest();
+
+    req.open('GET', 'some.txt');
+    req.onload = ()=>{
+        if(req.status == 200){
+            myResolve(req.response);
+        }else{
+            myReject("File not found");
+        }
     }
+
+    req.send();
 });
 
 myPromise.then(
     function(value){myDisplayer(value);},
     function(error){myDisplayer(error);}
 );
-
-
 
 
 
