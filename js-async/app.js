@@ -135,7 +135,48 @@ myPromise.then(
 
 
 
+//async make a function to return a Promise
+//await makes a function wait for a Promise
 
+/* 
+* The await keyword can only be used inside an async function
+* The two arguments resolve and reject are pre-defined in JS, we will not create them, but call one of them when the executor function is ready.
+* Very often we will not need a reject function
+*/
 
+//waiting for a timeout
+async function hello(){
+    let myPromise = new Promise(function(resolve){
+        setTimeout(function(){
+            resolve('Hello I\'m Sanjib');
+        }, 3000);
+    })
 
+    document.getElementById('hello').innerHTML = await myPromise;
+}
 
+hello();
+
+//waiting for a file
+async function getMsg(){
+    let myPromise = new Promise(function(resolve){
+        setTimeout(function(){
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'magnesium.txt');
+            xhr.onload = function(){
+                if(xhr.status == 200){
+                    resolve(xhr.response);
+                }else{
+                    resolve("File not found");
+                }
+            };
+
+            xhr.send();
+        }, 3000);
+    });
+
+    document.getElementById('magnesium').innerHTML = await myPromise;
+}
+
+getMsg();
